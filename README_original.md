@@ -1,40 +1,37 @@
-# Python script tools
+# Coronavirus (Covid-19) Data in the United States
 
-Refer to README_original.md for all credits for data provided
+**NEW:** We are publishing the data behind our [excess deaths tracker](https://www.nytimes.com/interactive/2020/04/21/world/coronavirus-missing-deaths.html) in order to provide researchers and the public with a better record of the true toll of the pandemic. This data is compiled from official national and municipal data for 24 countries. See the data and documentation in the [excess-deaths/](excess-deaths/) directory.
 
 ---
-## How to use (via terminal)
 
-#### For per-state 7 day per-capita values:
+[ [U.S. Data](us.csv) ([Raw CSV](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us.csv)) | [U.S. State-Level Data](us-states.csv) ([Raw CSV](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-states.csv)) | [U.S. County-Level Data](us-counties.csv) ([Raw CSV](https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv)) ]
 
-```>> python perStateStats.py ```
+The New York Times is releasing a series of data files with cumulative counts of coronavirus cases in the United States, at the state and county level, over time. We are compiling this time series data from state and local governments and health departments in an attempt to provide a complete record of the ongoing outbreak.
 
-This will print in-screen the desired values and also output as perStateStats.csv
+Since late January, The Times has tracked cases of coronavirus in real time as they were identified after testing. Because of the widespread shortage of testing, however, the data is necessarily limited in the picture it presents of the outbreak.
 
-#### For per-county 7 day per-capita values:
+We have used this data to power our [maps](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html) and [reporting](https://www.nytimes.com/coronavirus) tracking the outbreak, and it is now being made available to the public in response to requests from researchers, scientists and government officials who would like access to the data to better understand the outbreak.
 
-```>> python perCountyPerStateStats.py [state] ```
+The data begins with the first reported coronavirus case in Washington State on Jan. 21, 2020. We will publish regular updates to the data in this repository. 
 
-[optional] state:
-Providing a state name will calculate values for the counties in the given state only & print in-screen the desired values and also output as perCounty[StateName]Stats.csv \
-Omitting a state name will calculate values for all counties & print nothing in-screen and only output as perCountyPerState.csv
+## Live and Historical Data
 
-#### For pretty printing NYT provided case counts
+We are providing two sets of data with cumulative counts of coronavirus cases and deaths: one with our most current numbers for each geography and another with historical data showing the tally for each day for each geography.
 
-ex) {dates: [2020-01-01, 2020-01-02], cases: [1,49]}
+The historical data files are at the top level of the directory and contain data up to, but not including the current day. The live data files are in the [live/](live/) directory.
 
-```>> python prettyPrint.py [state] [n]```
+A key difference between the historical and live files is that the numbers in the historical files are the final counts at the end of each day, while the live files have figures that may be a partial count released during the day but cannot necessarily be considered the final, end-of-day tally..
 
-[required] state: Provide a state name for a state, 'usa' for aggregated, 'all' for all states separately \
-[optional] n: Provide a number of dates to print out. Omitting prints all of 2020
+The historical and live data are released in three files, one for each of these geographic levels: U.S., states and counties.
+ 
+Each row of data reports the cumulative number of coronavirus cases and deaths based on our best reporting up to the moment we publish an update. Our counts include both laboratory confirmed and probable cases using [criteria](https://int.nyt.com/data/documenthelper/6908-cste-interim-20-id-01-covid-19/85d47e89b637cd643d50/optimized/full.pdf) that were developed by states and the federal government. Not all geographies are reporting probable cases and yet others are providing confirmed and probable as a single total. Please [read here](https://github.com/nytimes/covid-19-data/blob/master/PROBABLE-CASES-NOTE.md) for a full discussion of this issue.
 
-#### For pretty printing input csv file
+We do our best to revise earlier entries in the data when we receive new information. If a county is not listed for a date, then there were zero reported confirmed cases and deaths.
 
-ex) colA: ['serena', 'grace'], colB: ['burgers', 'spam']
+State and county files contain [FIPS codes](https://www.census.gov/quickfacts/fact/note/US/fips), a standard geographic identifier, to make it easier for an analyst to combine this data with other data sets like a map file or population data.
 
-```>> python prettyPrintFile.py [filepath] [output file name]```
+Download all the data or clone this repository by clicking the green "Clone or download" button above.
 
-<<<<<<< HEAD
 ---
 
 ### Historical Data
@@ -215,10 +212,6 @@ Numbers reflect the combined number of lab-confirmed and probable cases and deat
 
 Numbers reflect the combined number of lab-confirmed and probable cases and deaths as reported by the state.
 
-* Illinois
-
-On June 8, Illinois started reporting probable cases and deaths in their data. We are including these cases and deaths in our total numbers for the state.
-
 * Louisiana
 
 The total cases number and total deaths number include only lab-confirmed cases and deaths. The state is reporting the deaths of probable Covid-19 cases separately from their total number of deaths statewide and in each parish, and we are including those deaths in our total number of deaths for the state.
@@ -226,10 +219,6 @@ The total cases number and total deaths number include only lab-confirmed cases 
 * Massachusetts
 
 On June 1, Massachusetts started reporting probable cases and deaths in their data. The total number of cases and deaths on that day include probable cases and deaths going back to March 1, leading to a large one day jump in the totals.
-
-* Michigan
-
-On June 1, we began recording probable cases and deaths reported by Michigan's county and regional health districts and adding them to the individual county and statewide totals. On June 5, the state also started to report probable cases and deaths statewide, leading to a jump in total cases and deaths.
 
 * Ohio
 
@@ -274,7 +263,3 @@ covid-data@nytimes.com
 Mitch Smith, Karen Yourish, Sarah Almukhtar, Keith Collins, Danielle Ivory and Amy Harmon have been leading our U.S. data collection efforts.
 
 Data has also been compiled by Jordan Allen, Jeff Arnold, Aliza Aufrichtig, Mike Baker, Robin Berjon, Matthew Bloch, Nicholas Bogel-Burroughs, Maddie Burakoff, Christopher Calabrese, Andrew Chavez, Robert Chiarito, Carmen Cincotti, Alastair Coote, Matt Craig, John Eligon, Tiff Fehr, Andrew Fischer, Matt Furber, Rich Harris, Lauryn Higgins, Jake Holland, Will Houp, Jon Huang, Danya Issawi, Jacob LaGesse, Hugh Mandeville, Patricia Mazzei, Allison McCann, Jesse McKinley, Miles McKinley, Sarah Mervosh, Andrea Michelson, Blacki Migliozzi, Steven Moity, Richard A. Oppel Jr., Jugal K. Patel, Nina Pavlich, Azi Paybarah, Sean Plambeck, Carrie Price, Scott Reinhard, Thomas Rivas, James G. Robinson, Michael Robles, Alison Saldanha, Alex Schwartz, Libby Seline, Shelly Seroussi, Rachel Shorey, Anjali Singhvi, Charlie Smart, Ben Smithgall, Steven Speicher, Michael Strickland, Albert Sun, Thu Trinh, Tracey Tully, Maura Turcotte, Miles Watkins, Phil Wells, Jeremy White, Josh Williams, Jin Wu and Yanxing Yang.
-=======
-[required] filepath: path of the file you want to prettyprint. should be a csv \
-[optional] output file name: optional; name of the file you want to output (file type will automatically be .txt)
->>>>>>> b407649... Sqashed all commits because i did something wrong in git
